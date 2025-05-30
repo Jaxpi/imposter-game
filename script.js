@@ -48,7 +48,7 @@ function startRound() {
   }
 
   function showPrompt(text, duration, nextStep) {
-    playSound(); // **Sound plays before showing prompt**
+    playSound(); // **Sound before showing prompt**
     promptDiv.innerHTML = text;
     promptDiv.style.display = "block";
     setTimeout(() => {
@@ -81,18 +81,16 @@ function startRound() {
                 setTimeout(() => {
                   // **Hide imposter prompt before next step**
                   promptDiv.style.display = "none";
-                  playSound(); // **Sound before "Guess the Imposter!"**
+                  playSound(); // **Sound before "When everyone is ready..."**
 
-                  // **Show "Guess the Imposter!" at the top**
-                  imposterDiv.style.display = "block";
-                  promptDiv.innerHTML = `<strong class="cyan-text">Group Prompt:</strong> <span class="white-text">${currentPrompts[0]}</span>`;
+                  // **NEW: Display waiting stage**
+                  promptDiv.innerHTML = `<strong class="white-text">When everyone is ready, reveal your responses.</strong>`;
                   promptDiv.style.display = "block";
 
-                  // **Ensure button appears BELOW everything**
+                  // **Show "Show Prompt" button BELOW the waiting text**
                   startButton.style.display = "block";
-                  startButton.innerHTML = "Reveal Imposter Prompt";
-                  imposterDiv.insertAdjacentElement("afterend", promptDiv); // Group prompt BELOW "Guess the Imposter!"
-                  promptDiv.insertAdjacentElement("afterend", startButton); // Button BELOW Group Prompt
+                  startButton.innerHTML = "Show Prompt";
+                  promptDiv.insertAdjacentElement("afterend", startButton);
                 });
               }
             );
@@ -111,6 +109,23 @@ startButton.addEventListener("click", () => {
   ) {
     startButton.innerHTML = "Reveal Prompt";
     startRound();
+  } else if (startButton.innerHTML === "Show Prompt") {
+    // **Ensure "Guess the Imposter!" appears first**
+    imposterDiv.style.display = "block";
+
+    // **Insert "Guess the Imposter!" BEFORE anything else**
+    document.body.insertBefore(imposterDiv, document.body.firstChild); // Moves it to the top
+
+    // **Now insert the Group Prompt BELOW "Guess the Imposter!"**
+    promptDiv.innerHTML = `<strong class="cyan-text">Group Prompt:</strong> <span class="white-text">${currentPrompts[0]}</span>`;
+    promptDiv.style.display = "block";
+
+    // **Ensure "Reveal Imposter Prompt" button is at the bottom**
+    startButton.innerHTML = "Reveal Imposter Prompt";
+
+    // **Insert elements in correct order**
+    promptDiv.insertAdjacentElement("beforebegin", imposterDiv); // Places Group Prompt below "Guess the Imposter!"
+    startButton.insertAdjacentElement("beforebegin", promptDiv); // Places Button below Group Prompt
   } else if (startButton.innerHTML === "Reveal Imposter Prompt") {
     // **Hide "Guess the Imposter!"**
     imposterDiv.style.display = "none";
