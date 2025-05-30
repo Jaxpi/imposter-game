@@ -19,14 +19,12 @@ startButton.style.display = "block";
 function startRound() {
   startButton.style.display = "none";
   imposterDiv.style.display = "none"; // Hide "Guess the Imposter!" when restarting
-  promptDiv.classList.remove("white-text"); // Restore original color
+  promptDiv.classList.remove("white-text"); // Reset color formatting
 
-  // **Ensure prompts don’t repeat until all are used**
   if (usedPrompts.length === prompts.length) {
     usedPrompts = []; // Reset used prompts after all are shown
   }
 
-  // Select a unique prompt pair
   let randomIndex;
   do {
     randomIndex = Math.floor(Math.random() * prompts.length);
@@ -50,33 +48,59 @@ function startRound() {
   }
 
   function showPrompt(text, duration, nextStep) {
+    playSound(); // **Sound plays before showing prompt**
     promptDiv.innerHTML = text;
     promptDiv.style.display = "block";
     setTimeout(() => {
-      promptDiv.style.display = "none";
-      playSound();
+      promptDiv.style.display = "none"; // **Hide prompt after duration**
       setTimeout(() => nextStep(), 1000);
     }, duration);
   }
 
-  countdown(3, () =>
-    showPrompt(currentPrompts[0], 7000, () => {
-      // **Now shows for 7 seconds**
-      countdown(5, () =>
-        showPrompt(currentPrompts[1], 7000, () => {
-          // **Pause now 5 seconds**
-          imposterDiv.style.display = "block";
+  countdown(3, () => {
+    playSound(); // **Sound before Group Prompt**
+    showPrompt(
+      `<span class="cyan-text">Group Prompt:</span> <span class="white-text">${currentPrompts[0]}</span>`,
+      7000,
+      () => {
+        // **Show group prompt in correct colors**
 
-          // **Change button text to "Reveal Prompts"**
-          setTimeout(() => {
-            startButton.style.display = "block";
-            startButton.innerHTML = "Reveal Prompts";
-            imposterDiv.insertAdjacentElement("afterend", startButton);
-          }, 1000);
-        })
-      );
-    })
-  );
+        setTimeout(() => {
+          // **Hide group prompt before next step**
+          promptDiv.style.display = "none";
+          playSound(); // **Sound before countdown**
+
+          countdown(5, () => {
+            playSound(); // **Sound before Imposter Prompt**
+            showPrompt(
+              `<span class="red-text">Imposter Prompt:</span> <span class="white-text">${currentPrompts[1]}</span>`,
+              7000,
+              () => {
+                // **Show imposter prompt in correct colors**
+
+                setTimeout(() => {
+                  // **Hide imposter prompt before next step**
+                  promptDiv.style.display = "none";
+                  playSound(); // **Sound before "Guess the Imposter!"**
+
+                  // **Show "Guess the Imposter!" at the top**
+                  imposterDiv.style.display = "block";
+                  promptDiv.innerHTML = `<strong class="cyan-text">Group Prompt:</strong> <span class="white-text">${currentPrompts[0]}</span>`;
+                  promptDiv.style.display = "block";
+
+                  // **Ensure button appears BELOW everything**
+                  startButton.style.display = "block";
+                  startButton.innerHTML = "Reveal Imposter Prompt";
+                  imposterDiv.insertAdjacentElement("afterend", promptDiv); // Group prompt BELOW "Guess the Imposter!"
+                  promptDiv.insertAdjacentElement("afterend", startButton); // Button BELOW Group Prompt
+                });
+              }
+            );
+          });
+        });
+      }
+    );
+  });
 }
 
 // **Event Listener for Button Clicks**
@@ -85,21 +109,20 @@ startButton.addEventListener("click", () => {
     startButton.innerHTML === "Start" ||
     startButton.innerHTML === "Reveal Prompt"
   ) {
-    startButton.innerHTML = "Reveal Prompt"; // Reset after first click
-    startRound(); // **Start the first round**
-  } else if (startButton.innerHTML === "Reveal Prompts") {
-    // **Hide "Guess the Imposter!" and display both prompts**
+    startButton.innerHTML = "Reveal Prompt";
+    startRound();
+  } else if (startButton.innerHTML === "Reveal Imposter Prompt") {
+    // **Hide "Guess the Imposter!"**
     imposterDiv.style.display = "none";
-    promptDiv.innerHTML = `<strong>${currentPrompts[0]}</strong><br>---<br><strong>${currentPrompts[1]}</strong><br>---<br>`;
-    promptDiv.style.display = "block";
-    promptDiv.classList.add("white-text"); // Change prompt color to white
 
-    // **Change button text to "Next Prompt"**
-    setTimeout(() => {
-      startButton.innerHTML = "Next Prompt";
-    }, 1000);
-  } else if (startButton.innerHTML === "Next Prompt") {
-    startButton.innerHTML = "Reveal Prompt"; // Reset for next round
+    // **Append the Imposter Prompt with correct colors**
+    promptDiv.innerHTML += `<br>---<br><strong class="red-text">Imposter Prompt:</strong> <span class="white-text">${currentPrompts[1]}</span>`;
+
+    // **Change button to "Next Round"**
+    startButton.innerHTML = "Next Round";
+  } else if (startButton.innerHTML === "Next Round") {
+    // **Reset for next round**
+    startButton.innerHTML = "Reveal Prompt";
     promptDiv.innerHTML = "";
     imposterDiv.style.display = "none";
     startRound();

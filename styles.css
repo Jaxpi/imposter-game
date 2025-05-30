@@ -1,83 +1,91 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 50px;
-    background-color: black;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 50px;
+  background-color: black;
 }
 
 .game-container {
-    max-width: 400px;
-    margin: auto;
+  max-width: 400px;
+  margin: auto;
 }
 
 #start-button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    font-size: 32px;
-    cursor: pointer;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    color: #03e9f4;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: 0.5s;
-    letter-spacing: 4px;
-    overflow: visible;
-    background: none;
-    animation: nav-item-animate1 1s linear infinite;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 32px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  color: #03e9f4;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  letter-spacing: 4px;
+  overflow: visible;
+  background: none;
+  animation: nav-item-animate1 1s linear infinite;
 }
 
 #start-button:hover {
-    color: white;
-    text-shadow: 0 0 10px white, 0 0 20px white, 0 0 42px white, 0 0 82px white,
-      0 0 92px white;
-    background: #03e9f4;
-    color: #050801;
-    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
-      0 0 200px #03e9f4;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+  color: white;
+  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 42px white, 0 0 82px white,
+    0 0 92px white;
+  background: #03e9f4;
+  color: #050801;
+  box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
+    0 0 200px #03e9f4;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
 
 #prompt {
-    font-size: 40px;
-    color: #03e9f4;
-    font-weight: bold;
-    margin-top: 20px;
-    display: none;
+  font-size: 40px;
+  color: #03e9f4;
+  font-weight: bold;
+  margin-top: 20px;
+  display: none;
 }
 
 .white-text {
-    color: white !important;
+  color: white !important;
+}
+
+.red-text {
+    color: red !important;
+}
+
+.cyan-text {
+    color: #03e9f4 !important; /* Cyan color */
 }
 
 #countdown {
-    font-size: 100px;
-    font-weight: bold;
-    color: red;
-    -webkit-text-stroke: 2px black;
-    text-shadow: 0 0 10px red, 0 0 20px red, 0 0 42px red, 0 0 82px red,
+  font-size: 100px;
+  font-weight: bold;
+  color: red;
+  -webkit-text-stroke: 2px black;
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 42px red, 0 0 82px red,
     0 0 92px red;
 }
 
 #imposter {
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px;
-    -webkit-text-stroke: 1px white;
-    text-shadow: 0 0 10px white, 0 0 20px white, 0 0 42px white, 0 0 82px white,
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  -webkit-text-stroke: 1px white;
+  text-shadow: 0 0 10px white, 0 0 20px white, 0 0 42px white, 0 0 82px white,
     0 0 92px white;
-    display: none;
+  display: none;
 }
 
 /* Adjustments for tablets (768px and below) */
 @media (max-width: 768px) {
-    #prompt {
-        font-size: 32px; /* Reduce font size for smaller screens */
-    }
-    #start-button {
+  #prompt {
+    font-size: 32px; /* Reduce font size for smaller screens */
+  }
+  #start-button {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
@@ -99,19 +107,19 @@ body {
     box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
       0 0 200px #03e9f4;
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-    }
-    body {
-        padding: 10px;
-    }
+  }
+  body {
+    padding: 10px;
+  }
 }
 
 /* Adjustments for phones (480px and below) */
 @media (max-width: 480px) {
-    #prompt {
-        font-size: 24px; /* Further reduce font size */
-        text-align: center; /* Center text for better readability */
-    }
-    #start-button {
+  #prompt {
+    font-size: 24px; /* Further reduce font size */
+    text-align: center; /* Center text for better readability */
+  }
+  #start-button {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
@@ -133,8 +141,8 @@ body {
     box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4,
       0 0 200px #03e9f4;
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-    }
-    body {
-        padding: 5px;
-    }
+  }
+  body {
+    padding: 5px;
+  }
 }
