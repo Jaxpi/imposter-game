@@ -70,10 +70,40 @@ const prompts = [
   [
     "Rate your cooking skills on a scale of 1 - 10.",
     "Pick one of these numbers: 1, 2, 9, or 10.",
-  ]
-  ["What non-country music artist should release a country album?", "Which music artist can you not stand listening to?"],
-  ["You're forming a new band, what's your band's name?", "What is your favorite Italian dish?"],
-//   ["", ""],
-//   ["", ""],
-//   ["", ""],
+  ][
+    ("What non-country music artist should release a country album?",
+    "Which music artist can you not stand listening to?")
+  ],
+  [
+    "You're forming a new band, what's your band's name?",
+    "What is your favorite Italian dish?",
+  ],
+  [
+    "What movie should have its own theme park?",
+    "What movie would you never watch with your parents?",
+  ],
+  [
+    "If you had to live in a fictional world/universe, which one would you choose?",
+    "Which fictional world/universe would be the worst to live in?",
+  ],
+  [
+    "How many close friends does the average person have?",
+    "Pick a number between 5 and 20.",
+  ],
+  [
+    "What is the best job to have?",
+    "What job would a 10 year old be able to do?",
+  ],
+  [
+    "Which animal would you want as a best friend?",
+    "What is the most boring animal?",
+  ],
+  //   ["", ""],
+  //   ["", ""],
+  //   ["", ""],
+  //   ["", ""],
+  //   ["", ""],
+  //   ["", ""],
+  //   ["", ""],
+  //   ["", ""],
 ];
