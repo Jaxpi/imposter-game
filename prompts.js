@@ -71,8 +71,8 @@ const prompts = [
     "Rate your cooking skills on a scale of 1 - 10.",
     "Pick one of these numbers: 1, 2, 9, or 10.",
   ]
-//   ["", ""],
-//   ["", ""],
+  ["What non-country music artist should release a country album?", "Which music artist can you not stand listening to?"],
+  ["You're forming a new band, what's your band's name?", "What is your favorite Italian dish?"],
 //   ["", ""],
 //   ["", ""],
 //   ["", ""],
