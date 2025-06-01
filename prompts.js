@@ -18,7 +18,7 @@ const prompts = [
   ],
   [
     "What would you say when introducing yourself to a new boss?",
-    "What would you say when meeting your best friend's new significant other?",
+    "What would you say when trying to hit on someone?",
   ],
   [
     "If you could change your name what would you change it to?",
@@ -42,7 +42,10 @@ const prompts = [
     "If you could have one superpower which would you choose?",
     "What would be the lamest superpower to have?",
   ],
-  ["What would you buy if you won the lottery?", "What is a waste of money?"],
+  [
+    "What would you buy if you won the lottery?",
+    "What is a waste of money to buy?",
+  ],
   [
     "You're stuck on a deserted island, what 3 things would you most want to have with you?",
     "Name 3 things to take to a kid's birthday party.",
@@ -71,8 +74,8 @@ const prompts = [
     "Rate your cooking skills on a scale of 1 - 10.",
     "Pick one of these numbers: 1, 2, 9, or 10.",
   ][
-    ("What non-country music artist should release a country album?",
-    "Which music artist can you not stand listening to?")
+    "What non-country music artist should release a country album?",
+    "Which music artist can you not stand listening to?",
   ],
   [
     "You're forming a new band, what's your band's name?",
