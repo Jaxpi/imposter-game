@@ -73,7 +73,8 @@ const prompts = [
   [
     "Rate your cooking skills on a scale of 1 - 10.",
     "Pick one of these numbers: 1, 2, 9, or 10.",
-  ][
+  ],
+  [
     "What non-country music artist should release a country album?",
     "Which music artist can you not stand listening to?",
   ],
@@ -101,7 +102,7 @@ const prompts = [
     "Which animal would you want as a best friend?",
     "What is the most boring animal?",
   ],
-  //   ["", ""],
+    ["Which month is your favorite?", "Which is the most boring month of the year?"],
   //   ["", ""],
   //   ["", ""],
   //   ["", ""],

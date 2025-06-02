@@ -1,7 +1,12 @@
 const startButton = document.getElementById("start-button");
 const countdownDiv = document.getElementById("countdown");
 const promptDiv = document.getElementById("prompt");
-const sound = document.getElementById("sound");
+const sounds = [
+  new Audio("circleLookSound.mp3"),
+  new Audio("closeYourEyesSound.mp3"),
+  new Audio("xLookSound.mp3"),
+  new Audio("everyoneLookSound.mp3"),
+];
 let usedPrompts = [];
 let currentPrompts = [];
 
@@ -33,8 +38,10 @@ function startRound() {
   usedPrompts.push(randomIndex);
   currentPrompts = prompts[randomIndex];
 
-  function playSound() {
-    sound.play();
+  function playSound(index) {
+    if (index >= 0 && index < sounds.length) {
+      sounds[index].play();
+    }
   }
 
   function countdown(seconds, callback) {
@@ -58,39 +65,33 @@ function startRound() {
   }
 
   countdown(3, () => {
-    playSound(); // **Sound before Group Prompt**
+    playSound(0); // Sound before Group Prompt
     showPrompt(
       `<span class="cyan-text">Group Prompt:</span> <span class="white-text">${currentPrompts[0]}</span>`,
       7000,
       () => {
-        // **Show group prompt in correct colors**
-
         setTimeout(() => {
-          // **Hide group prompt before next step**
           promptDiv.style.display = "none";
-          playSound(); // **Sound before countdown**
+          playSound(1); // Sound before countdown
 
           countdown(5, () => {
-            playSound(); // **Sound before Imposter Prompt**
+            playSound(2); // Sound before Imposter Prompt
             showPrompt(
               `<span class="red-text">Imposter Prompt:</span> <span class="white-text">${currentPrompts[1]}</span>`,
               7000,
               () => {
-                // **Show imposter prompt in correct colors**
-
                 setTimeout(() => {
-                  // **Hide imposter prompt before next step**
                   promptDiv.style.display = "none";
-                  playSound(); // **Sound before "When everyone is ready..."**
+                  playSound(3); // Sound before "When everyone is ready..."
+                  setTimeout(() => {
+                    promptDiv.innerHTML = `<strong class="white-text">When everyone is ready, reveal your responses.</strong>`;
+                    promptDiv.style.display = "block";
 
-                  // **NEW: Display waiting stage**
-                  promptDiv.innerHTML = `<strong class="white-text">When everyone is ready, reveal your responses.</strong>`;
-                  promptDiv.style.display = "block";
-
-                  // **Show "Show Prompt" button BELOW the waiting text**
-                  startButton.style.display = "block";
-                  startButton.innerHTML = "Show Prompt";
-                  promptDiv.insertAdjacentElement("afterend", startButton);
+                    // Ensure the button is visible again
+                    startButton.style.display = "block";
+                    startButton.innerHTML = "Show Prompt";
+                    promptDiv.insertAdjacentElement("afterend", startButton);
+                  }, 1000); // Adding a slight delay to ensure the update happens
                 });
               }
             );
