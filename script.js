@@ -2,10 +2,10 @@ const startButton = document.getElementById("start-button");
 const countdownDiv = document.getElementById("countdown");
 const promptDiv = document.getElementById("prompt");
 const sounds = [
-  new Audio("circleLookSound.mp3"),
-  new Audio("closeYourEyesSound.mp3"),
-  new Audio("xLookSound.mp3"),
-  new Audio("everyoneLookSound.mp3"),
+  new Audio("audio/circleLookSound.mp3"),
+  new Audio("audio/closeYourEyesSound.mp3"),
+  new Audio("audio/xLookSound.mp3"),
+  new Audio("audio/everyoneLookSound.mp3"),
 ];
 let usedPrompts = [];
 let currentPrompts = [];
